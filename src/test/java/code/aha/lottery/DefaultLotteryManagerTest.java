@@ -184,14 +184,15 @@ public class DefaultLotteryManagerTest {
     	String cmd4 = "purchase " + user3;
     	String cmd5 = "winners ";
     	String cmd6 = "quit";
-    	//String winners 
-    	
+
     	Ticket expectedTicket1 = new Ticket(5, user1);
-    	Ticket expectedTicket2 = new Ticket(5, user2);
-    	Ticket expectedTicket3 = new Ticket(5, user3);
+    	Ticket expectedTicket2 = new Ticket(13, user2);
+    	Ticket expectedTicket3 = new Ticket(21, user3);
     	
-    	Map<Integer,Winner> winners = createWinnerList();
-    	
+    	Map<Integer,Winner> winners = new HashMap<>();
+    	winners.put(1, Winner.createFistPosition(expectedTicket1.getNumber(),expectedTicket1,75));
+    	winners.put(2, Winner.createSecondPosition(expectedTicket2.getNumber(),expectedTicket2,15));
+    	winners.put(3, Winner.createThirdPosition(expectedTicket3.getNumber(),expectedTicket3,10));
     	
     	when(drawManager.purchaseTicket(user1)).thenReturn(expectedTicket1);
     	when(drawManager.purchaseTicket(user2)).thenReturn(expectedTicket2);
